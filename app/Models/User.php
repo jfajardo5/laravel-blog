@@ -43,16 +43,31 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Get articles created by user.
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function articles()
     {
         return $this->hasMany('App\Models\Article');
     }
 
+    /**
+     * Get comments made by user.
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function comments()
     {
         return $this->hasMany('App\Models\Comment');
     }
 
+    /**
+     * Delete user, along with articles and comments made.
+     * 
+     * @return void
+     */
     public function delete()
     {
         $this->articles()->delete();

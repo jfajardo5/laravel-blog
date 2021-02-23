@@ -20,13 +20,27 @@ class Article extends Model
         'body',
     ];
 
+    /**
+     * Get comments under article.
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function comments()
     {
+
         return $this->hasMany('App\Models\Comment');
+
     }
 
+    /**
+     * Get article's author.
+     * 
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function author()
     {
+
         return $this->belongsTo('App\Models\User');
+
     }
 }

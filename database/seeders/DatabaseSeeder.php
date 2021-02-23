@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
     /**
      * Seed main admin user as defined in .env
      * 
-     * @return void
+     * @return User $admin
      */
     private function createAdmin()
     {
