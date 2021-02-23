@@ -15,7 +15,7 @@ class Comment extends Model
      * @var array
      */
     protected $fillable = [
-        'comment',
+        'body',
     ];
 
     public function author()
@@ -28,8 +28,13 @@ class Comment extends Model
         return $this->belongsTo('App\Models\Article');
     }
 
+    public function parent()
+    {
+        return $this->belongsTo('App\Models\Comment', 'comment_id', 'id');
+    }
+
     public function replies()
     {
-        return $this->hasMany('App\Models\Comment', 'parent_id', 'id'); 
+        return $this->hasMany('App\Models\Comment', 'comment_id', 'id'); 
     }
 }

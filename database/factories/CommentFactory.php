@@ -24,7 +24,7 @@ class CommentFactory extends Factory
     {
         return [
             'user_id' => User::inRandomOrder()->first()->id,
-            'comment' => $this->faker->paragraph(), 
+            'body' => $this->faker->paragraph(), 
         ];
     }
 }
