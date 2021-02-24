@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ArticleController extends Controller
 {
@@ -35,7 +36,16 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|unique:articles|max:150',
+            'body' => 'required'
+        ]);
+
+        Article::create([
+            'slug' => Str::slug($request->input('title')),
+            'title' => $request->input('title'),
+            'body' => $request->input('body')
+        ]);
     }
 
     /**
